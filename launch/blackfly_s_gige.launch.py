@@ -21,14 +21,14 @@ from launch import LaunchDescription
 from ament_index_python.packages import get_package_share_directory
 
 camera_params = {
-    'debug': False,
+    'debug': True,
     'compute_brightness': False,
     'dump_node_map': False,
     # set parameters defined in blackfly_s_gige.cfg
     'gain_auto': 'Continuous',
     'exposure_auto': 'Continuous',
     'frame_rate_auto': 'Off',
-    'frame_rate': 20.0,
+    'frame_rate': 30.0,
     'frame_rate_enable': True,
     'trigger_mode': 'Off',
     'chunk_mode_active': True,
@@ -40,7 +40,9 @@ camera_params = {
     'chunk_enable_gain': True,
     'chunk_selector_timestamp': 'Timestamp',
     'chunk_enable_timestamp': True,
-    'gev_scps_packet_size': 9000,
+    'gev_scps_packet_size': 1400,
+    'ieee1588': True,
+    'ieee1588_mode': 'SlaveOnly'
     }
 
 
@@ -50,7 +52,7 @@ def generate_launch_description():
     config_dir = flir_dir + '/config/'
     name_arg = LaunchArg('camera_name', default_value='blackfly_s',
                          description='camera name')
-    serial_arg = LaunchArg('serial', default_value="'20435008'",
+    serial_arg = LaunchArg('serial', default_value="'22343893'",
                            description='serial number')
     print([LaunchConfig('serial'), '_'])
     node = Node(package='flir_spinnaker_ros2',
